@@ -1,0 +1,78 @@
+CREATE TABLE account (
+    name VARCHAR(50) NOT NULL,
+    password VARCHAR(50) NOT NULL,
+);
+INSERT INTO account (username, password) VALUES 
+('user1', 'pass123'),
+('user2', 'securePass456'),
+('user3', 'qwerty789'),
+('user4', 'coffeeLover101'),
+('user5', 'javaBeans202'),
+('user6', 'mochaMagic303'),
+('user7', 'latteLove404'),
+('user8', 'espressoKing505'),
+('user9', 'cappuccinoX606'),
+('user10', 'honeySweet707');
+
+
+CREATE TABLE customer (
+    name VARCHAR(50) NOT NULL,
+    password VARCHAR(50) NOT NULL,
+    Gmail VARCHAR(50) NOT NULL,
+    location VARCHAR(50) NOT NULL,
+    contact_number INT(50) NOT NULL
+);
+INSERT INTO customer (name, password, Gmail, location, contact_number) VALUES 
+('Juan Dela Cruz', 'password123', 'juan123@gmail.com', 'Manila', 9123456789),
+('Maria Santos', 'mariaPass456', 'maria456@yahoo.com', 'Quezon City', 9234567890),
+('Pedro Ramirez', 'pedroPass789', 'pedro789@hotmail.com', 'Cebu', 9345678901),
+('Ana Lopez', 'anaSecure101', 'ana101@gmail.com', 'Davao', 9456789012),
+('Carlos Mendoza', 'carlosLife202', 'carlos303@yahoo.com', 'Baguio', 9567890123),
+('Sofia Gomez', 'sofiaSweet404', 'sofia404@gmail.com', 'Makati', 9678901234),
+('Diego Cruz', 'diegoJava505', 'diego505@gmail.com', 'Pasig', 9789012345),
+('Elena Torres', 'elenaMocha606', 'elena606@yahoo.com', 'Laguna', 9890123456),
+('Roberto Reyes', 'robertoC123', 'roberto707@hotmail.com', 'Batangas', 9901234567),
+('Angela Rivera', 'angelaCoffe808', 'angela808@gmail.com', 'Cavite', 9012345678);
+
+
+CREATE TABLE item ( 
+    type_of_coffee VARCHAR(50) NOT NULL,
+    size VARCHAR(50) NOT NULL,
+ 
+    milk VARCHAR(50) NOT NULL,
+    sweetener VARCHAR(50) NOT NULL,
+    toppings VARCHAR(50) NOT NULL
+);
+INSERT INTO item (type_of_coffee, size, milk, sweetener, toppings) VALUES 
+('Espresso', 'Small', 'Almond', 'Sugar', 'Whipped Cream'),
+('Latte', 'Medium', 'Oat', 'Honey', 'Caramel'),
+('Cappuccino', 'Large', 'Whole Milk', 'Sugar', 'Chocolate Shavings'),
+('Mocha', 'Small', 'Soy', 'Honey', 'Cinnamon'),
+('Americano', 'Medium', 'No Milk', 'No Sweetener', 'None'),
+('Macchiato', 'Large', 'Whole Milk', 'Sugar', 'Whipped Cream'),
+('Flat White', 'Small', 'Oat', 'Honey', 'Caramel'),
+('Iced Coffee', 'Medium', 'Almond', 'Sugar', 'Vanilla Syrup'),
+('Affogato', 'Large', 'Whole Milk', 'No Sweetener', 'Ice Cream'),
+('Irish Coffee', 'Medium', 'No Milk', 'Sugar', 'Whipped Cream');
+
+
+CREATE TABLE order (
+    order_id INT AUTO_INCREMENT PRIMARY KEY, 
+    type_of_coffee VARCHAR(50) NOT NULL,
+    quantity INT NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    mode_of_payment VARCHAR(50) NOT NULL,
+    order_date DATE NOT NULL,
+    mode_of_delivery VARCHAR(50) NOT NULL
+);
+INSERT INTO order (type_of_coffee, quantity, price, mode_of_payment, order_date, mode_of_delivery) VALUES 
+('Espresso', 2, 150.00, 'Cash', '2025-03-12', 'Pickup'),
+('Latte', 1, 120.50, 'Credit Card', '2025-03-11', 'Delivery'),
+('Cappuccino', 3, 180.75, 'GCash', '2025-03-10', 'Pickup'),
+('Mocha', 1, 130.00, 'Cash', '2025-03-09', 'Delivery'),
+('Americano', 4, 200.00, 'PayPal', '2025-03-08', 'Pickup'),
+('Macchiato', 2, 160.25, 'Credit Card', '2025-03-07', 'Delivery'),
+('Flat White', 1, 140.00, 'GCash', '2025-03-06', 'Pickup'),
+('Iced Coffee', 5, 250.00, 'Cash', '2025-03-05', 'Delivery'),
+('Affogato', 2, 170.50, 'PayPal', '2025-03-04', 'Pickup'),
+('Irish Coffee', 3, 190.75, 'Credit Card', '2025-03-03', 'Delivery');
