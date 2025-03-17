@@ -1,0 +1,128 @@
+USE JAYARR_CAFE;
+USE JAYARR_CAFE;
+USE J4Y4RR_CAFE;FINAL
+
+mysql -h localhost -u root -p
+
+-- Selecting data
+SELECT * FROM account;
+SELECT * FROM customer;
+SELECT * FROM item;
+SELECT * FROM `order`;
+
+-- Creating account table
+CREATE TABLE account (
+    username VARCHAR(50) NOT NULL PRIMARY KEY,
+    password VARCHAR(50) NOT NULL
+);
+
+-- Inserting data into account
+INSERT INTO account (username, password) VALUES
+('jayar_bordo', 'jayar123'),
+('edris_allaga', 'edris123'),
+('john_paul_bombio', 'john123'),
+('jethro_maraguinot', 'jethro123'),
+('romulo_tubongbanua', 'romulo123'),
+('jasper_medalla', 'jasper123'),
+('jason_medalla', 'jason123'),
+('dave_allaga', 'dave123'),
+('mark_bombio', 'mark123'),
+('jeth_bugrong', 'jeth123');
+
+-- Creating customer table
+CREATE TABLE customer (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    password VARCHAR(50) NOT NULL,
+    Gmail VARCHAR(50) NOT NULL,
+    location VARCHAR(50) NOT NULL,
+    contact_number VARCHAR(15) NOT NULL
+);
+
+-- Inserting data into customer
+INSERT INTO customer (name, password, Gmail, location, contact_number) VALUES
+('John Doe', 'johndoe123', 'johndoe@gmail.com', 'Koronadal', '09123456789'),
+('Jane Smith', 'jane123', 'janesmith@gmail.com', 'Davao', '09234567890'),
+('Alice Smith', 'alice123', 'alicesmith@gmail.com', 'Tupi', '09345678901'),
+('Bob Allaga', 'bob123', 'boballaga@gmail.com', 'Polomolok', '09456789012'),
+('Emily Brown', 'emilyb123', 'emilybrown@gmail.com', 'Gensan', '09567890123'),
+('David Jones', 'davidj123', 'davidjones@gmail.com', 'Tantangan', '09678901234'),
+('Sarah Davis', 'sarahd123', 'sarahdavis@gmail.com', 'Stonino', '09789012345'),
+('Mark Wilson', 'markw123', 'markwilson@gmail.com', 'Isulan', '09890123456'),
+('Linda Bombo', 'linda123', 'lindabombo@gmail.com', 'Tacurong', '09901234567'),
+('Kevin Miller', 'kevin123', 'kevinmiller@gmail.com', 'Banga', '09012345678');
+
+-- Creating item table
+CREATE TABLE item (
+    item_id INT AUTO_INCREMENT PRIMARY KEY,
+    type_of_coffee VARCHAR(50) NOT NULL,
+    size VARCHAR(50) NOT NULL,
+    milk VARCHAR(50) NOT NULL,
+    sweetener VARCHAR(50) NOT NULL,
+    toppings VARCHAR(50) NOT NULL
+);
+
+-- Inserting data into item
+INSERT INTO item (type_of_coffee, size, milk, sweetener, toppings) VALUES
+('Espresso', 'Small', 'Almond', 'Sugar', 'Whipped Cream'),
+('Latte', 'Medium', 'Oat', 'Honey', 'Caramel'),
+('Cappuccino', 'Large', 'None', 'Sugar', 'Whipped Cream'),
+('Mocha', 'Small', 'Oat', 'Honey', 'Caramel'),
+('Cappuccino', 'Medium', 'None', 'None', 'None'),
+('Espresso', 'Large', 'Almond', 'Sugar', 'Whipped Cream'),
+('Mocha', 'Small', 'Oat', 'Honey', 'Caramel'),
+('Latte', 'Medium', 'Almond', 'Sugar', 'Whipped Cream'),
+('Latte', 'Large', 'Oat', 'None', 'Caramel'),
+('Espresso', 'Medium', 'None', 'Sugar', 'Whipped Cream');
+
+-- Creating order table
+CREATE TABLE `order` (
+    order_id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT NOT NULL,
+    item_id INT NOT NULL,
+    quantity INT NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    method_of_payment VARCHAR(50) NOT NULL,
+    order_date DATE NOT NULL,
+    mode_of_delivery VARCHAR(50) NOT NULL,
+    FOREIGN KEY (customer_id) REFERENCES customer(id) ON DELETE CASCADE,
+    FOREIGN KEY (item_id) REFERENCES item(item_id) ON DELETE CASCADE
+);
+
+-- Inserting data into order
+INSERT INTO `order` (customer_id, item_id, quantity, price, method_of_payment, order_date, mode_of_delivery) VALUES
+(1, 1, 2, 150.00, 'Cash', '2025-03-12', 'Pickup'),
+(2, 2, 1, 120.50, 'Credit Card', '2025-03-11', 'Delivery'),
+(3, 3, 3, 180.75, 'Gcash', '2025-03-10', 'Delivery'),
+(4, 4, 1, 130.00, 'Cash', '2025-03-09', 'Delivery'),
+(5, 5, 4, 200.00, 'Credit Card', '2025-03-08', 'Pickup'),
+(6, 6, 2, 160.25, 'Credit Card', '2025-03-07', 'Pickup'),
+(7, 7, 1, 140.00, 'Gcash', '2025-03-06', 'Delivery'),
+(8, 8, 3, 130.25, 'Cash', '2025-03-05', 'Pickup'),
+(9, 9, 2, 170.50, 'Credit Card', '2025-03-04', 'Pickup'),
+(10, 10, 3, 190.75, 'Credit Card', '2025-03-03', 'Pickup');
+
+
+CREATE TABLE `order` (
+    order_id INT AUTO_INCREMENT PRIMARY KEY,
+    quantity INT NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    method_of_payment VARCHAR(50) NOT NULL,
+    order_date DATE NOT NULL,
+    mode_of_delivery VARCHAR(50) NOT NULL,
+    FOREIGN KEY (customer_id) REFERENCES customer(id) ON DELETE CASCADE,
+    FOREIGN KEY (item_id) REFERENCES item(item_id) ON DELETE CASCADE
+);
+
+-- Inserting data into order
+INSERT INTO `order` (quantity, price, method_of_payment, order_date, mode_of_delivery) VALUES
+(2, 150.00, 'Cash', '2025-03-12', 'Pickup'),
+(1, 120.50, 'Credit Card', '2025-03-11', 'Delivery'),
+(3, 180.75, 'Gcash', '2025-03-10', 'Delivery'),
+(1, 130.00, 'Cash', '2025-03-09', 'Delivery'),
+(4, 200.00, 'Credit Card', '2025-03-08', 'Pickup'),
+(2, 160.25, 'Credit Card', '2025-03-07', 'Pickup'),
+(1, 140.00, 'Gcash', '2025-03-06', 'Delivery'),
+(3, 130.25, 'Cash', '2025-03-05', 'Pickup'),
+(2, 170.50, 'Credit Card', '2025-03-04', 'Pickup'),
+(3, 190.75, 'Credit Card', '2025-03-03', 'Pickup');
